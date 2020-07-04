@@ -2,24 +2,11 @@
 include "utilities.php";
 
 if(isset($_POST['submit'])){
-    $username = $_POST['name'];
-    $password = $_POST['password'];
-    $id = $_POST['id'];
-    echo "<br> $username, $password, $id";
-
-    $res = mysqli_query(
-            $con,
-            "UPDATE users
-            SET
-            username = '$username',
-            password = '$password'
-            WHERE
-            id = $id"
-
+    updateData(
+        $_POST['name'],
+        $_POST['password'],
+        $_POST['id']
     );
-    if(!$res){
-        die("Query doesn't work: " . mysqli_error($con));
-    }
 }
 ?>
 

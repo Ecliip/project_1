@@ -7,3 +7,22 @@ global $result;
         echo "<option value='$id'>$id</option>";
     }
 }
+
+function updateData($username, $password, $id){
+    global $result, $con;
+    echo "<br> $username, $password, $id";
+
+    $res = mysqli_query(
+        $con,
+        "UPDATE users
+            SET
+            username = '$username',
+            password = '$password'
+            WHERE
+            id = $id"
+
+    );
+    if(!$result){
+        die("Query doesn't work: " . mysqli_error($con));
+    }
+}
