@@ -1,44 +1,31 @@
 <?php
-if(isset($_POST['submit'])) {
+$user = 'root';
+$password = 'root';
+$db = 'mydb1';
+$host = 'localhost';
+$port = 3307;
 
-    $username = $_POST['username'];
-    $password = $_POST['password'];
-
-    $user = 'root';
-    $password = 'root';
-    $db = 'mydb1';
-    $host = 'localhost';
-    $port = 3307;
-
-    $link = mysqli_init();
-    $connection = mysqli_connect(
-
+$con = mysqli_connect(
         $host,
         $user,
         $password,
         $db,
-        $port
-    );
+        $port);
 
-    if($connection){
-        echo "we are connected <br>";
-    } else {
-        die("DB connection failed!");
-    }
+// Check connection
+if (mysqli_connect_errno()) {
+    echo "Failed to connect to MySQL: " . mysqli_connect_error();
+    exit();
+} else {
+    echo "it is connected <br>";
 }
-
-
-
-
-
-//    if($username && $password){
-//        echo "it is ok <br>";
-//    }
-//} else {
-//    echo "i didnt get the data";
-//}
+$result = mysqli_query(
+        $con,
+        "SELECT * FROM users");
+if ($result) {
+    echo "Returned rows are: " . mysqli_num_rows($result) . "<br>";
+}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -47,20 +34,29 @@ if(isset($_POST['submit'])) {
     <title>Title</title>
 </head>
 <body>
-<form method="post" action=<?php $_SERVER['PHP_SELF'] ?>>
+<form method="post" action="index.php">
     <div>
-        name: <input type="text" name="username">
+        name: <input type="text" name="name">
     </div>
     <div>
-        password: <input type="password" name="password">
+        email: <input type="email" name="email">
     </div>
     <div>
-        <input type="submit" name="submit">
-    </div>
-    <?php
+        email: <select name="id" id="">
+            <?php
+            while($row = mysqli_fetch_assoc($result)) {
+                $id = $row['id'];
+                echo "<option value='$id'>$id</option>";
+            } ?>
 
-    ?>
+        </select>
+    </div>
+
+    <div>
+        <input type="submit" name="submit" value="Submit">
+    </div>
 
 </form>
+
 </body>
 </html>
