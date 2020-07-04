@@ -21,7 +21,7 @@
         echo "it is connected <br>";
     }
 
-global $con;
+
 $result = mysqli_query(
     $con,
     "SELECT * FROM users");
