@@ -1,6 +1,14 @@
 <?php
 include "utilities.php";
 
+if(isset($_POST['submit'])){
+    $username = $_POST['name'];
+    $password = $_POST['password'];
+    $id = $_POST['id'];
+    echo "<br> $username, $password, $id";
+
+    
+}
 ?>
 
 <!DOCTYPE html>
@@ -15,7 +23,7 @@ include "utilities.php";
         name: <input type="text" name="name">
     </div>
     <div>
-        email: <input type="email" name="email">
+        password: <input type="text" name="password">
     </div>
     <div>
         email: <select name="id" id="">
@@ -27,7 +35,7 @@ include "utilities.php";
     </div>
 
     <div>
-        <input type="submit" name="submit" value="Submit">
+        <input type="submit" name="submit" value="Update">
     </div>
 
 </form>
