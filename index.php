@@ -7,7 +7,19 @@ if(isset($_POST['submit'])){
     $id = $_POST['id'];
     echo "<br> $username, $password, $id";
 
-    
+    $res = mysqli_query(
+            $con,
+            "UPDATE users
+            SET
+            username = '$username',
+            password = '$password'
+            WHERE
+            id = $id"
+
+    );
+    if(!$res){
+        die("Query doesn't work: " . mysqli_error($con));
+    }
 }
 ?>
 
@@ -26,9 +38,9 @@ if(isset($_POST['submit'])){
         password: <input type="text" name="password">
     </div>
     <div>
-        email: <select name="id" id="">
+        id: <select name="id" id="">
             <?php
-            printData();
+            printOptions();
             ?>
 
         </select>
