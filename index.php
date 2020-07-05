@@ -2,11 +2,7 @@
 include "utilities.php";
 
 if(isset($_POST['submit'])){
-    updateData(
-        $_POST['name'],
-        $_POST['password'],
-        $_POST['id']
-    );
+    deleteData($_POST['id']);
 }
 ?>
 
@@ -34,7 +30,7 @@ if(isset($_POST['submit'])){
     </div>
 
     <div>
-        <input type="submit" name="submit" value="Update">
+        <input type="submit" name="submit" value="Delete">
     </div>
 
 </form>
