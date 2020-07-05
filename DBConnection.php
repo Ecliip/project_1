@@ -22,11 +22,3 @@
     }
 
 
-$result = mysqli_query(
-    $con,
-    "SELECT * FROM users");
-if ($result) {
-    echo "Returned rows are: " . mysqli_num_rows($result) . "<br>";
-}
-
-
